@@ -1,0 +1,44 @@
+label{
+    display: block;
+    margin-bottom: 10px;
+}
+
+.back_button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    background-image: url('back.png'); /* Đặt ảnh nền */
+    background-size: contain; /* Đảm bảo ảnh vừa vặn */
+    background-repeat: no-repeat; /* Không lặp lại ảnh */
+    background-position: center; /* Căn giữa ảnh */
+    width: 100px; /* Kích thước button */
+    height: 50px; /* Kích thước button */
+}
+
+.info {
+    display: flex;
+    align-items: right;
+}
+
+.text{
+    display: flex;
+    flex-direction: column;
+    word-wrap: break-word;
+    align-items: flex-start;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    line-height: 0;
+}
+
+.in4_text{
+    font-size: 15px;
+    margin-bottom: 10px;
+    line-height: 1.5;
+    font-weight: normal;
+}
+
+.image {
+    width: default;
+    height: default;
+}

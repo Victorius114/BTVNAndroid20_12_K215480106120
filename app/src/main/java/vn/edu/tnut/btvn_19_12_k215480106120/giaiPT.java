@@ -5,7 +5,6 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.webkit.JavascriptInterface;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 public class giaiPT extends AppCompatActivity {
@@ -13,52 +12,46 @@ public class giaiPT extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.webview);
 
-        WebView webView = new WebView(this);
+        WebView webView = findViewById(R.id.mainView);
         WebSettings webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true);
 
-        // Đăng ký interface để gọi Java từ JavaScript
-        webView.addJavascriptInterface(new PTInterface(), "PTSolver");
+        // Đăng ký PTInterface
+        webView.addJavascriptInterface(new PTInterface(), "PTInterface");
 
-        // Tải file HTML/JS từ thư mục assets
+        // Tải trang HTML từ assets
         webView.loadUrl("file:///android_asset/index.html");
-
-        // Đảm bảo xử lý sự kiện trong WebView
-        webView.setWebViewClient(new WebViewClient());
     }
 
-    // Lớp cho phép gọi các phương thức Java
-    public class PTInterface {
+    // Lớp PTInterface để gọi phương thức Java từ JavaScript
+    public static class PTInterface {
+
+        // Phương thức giải phương trình bậc 1
         @JavascriptInterface
-        public double solveBac1(double a, double b) {
-            return bac1(a, b);
+        public double bac1(double a, double b) {
+            if (a == 0) {
+                throw new IllegalArgumentException("a không thể bằng 0");
+            }
+            return -b / a;
         }
-
+        // Phương thức giải phương trình bậc 2
         @JavascriptInterface
-        public double[] solveBac2(double a, double b, double c) {
-            return bac2(a, b, c);
+        public double[] bac2(double a, double b, double c) {
+            double delta = Math.pow(b, 2) - 4 * a * c;
+            double x1, x2;
+
+            if (delta > 0) {
+                x1 = (-b - Math.sqrt(delta)) / (2 * a);
+                x2 = (-b + Math.sqrt(delta)) / (2 * a);
+            } else if (delta == 0) {
+                x1 = x2 = -b / (2 * a);
+            } else {
+                x1 = x2 = 0;  // Không có nghiệm thực
+            }
+
+            return new double[]{delta, x1, x2};
         }
-    }
-
-    protected static double bac1(double a, double b) {
-        return -b / a;
-    }
-
-    protected static double[] bac2(double a, double b, double c) {
-        double delta = Math.pow(b, 2) - 4 * a * c;
-        double x1, x2;
-
-        if (delta > 0) {
-            x1 = (-b - Math.sqrt(delta)) / (2 * a);
-            x2 = (-b + Math.sqrt(delta)) / (2 * a);
-        } else if (delta == 0) {
-            x1 = x2 = -b / (2 * a);
-        } else {
-            x1 = x2 = 0;
-        }
-
-        return new double[]{delta, x1, x2};
     }
 }

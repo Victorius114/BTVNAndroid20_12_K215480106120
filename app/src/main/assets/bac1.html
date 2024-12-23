@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Giải Phương Trình</title>
+    <link rel='stylesheet' href="style.css">
     <script src="script.js"></script>
 </head>
 <body>
+
 <h2>Giải Phương Trình Bậc 1: ax + b = 0</h2>
 <label for="a1">Hệ số a: </label>
 <input type="number" id="a1" required>
@@ -15,6 +17,9 @@
 <button onclick="giaiBac1()">Giải</button>
 <p id="result1"></p>
 
-<button onclick="return_index()">Back</button>
+<div>
+    <button class="back_button" onclick="return_index()"></button>
+</div>
+
 </body>
 </html>

@@ -1,46 +1,36 @@
-function solveBac1() {
-    const a = parseFloat(document.getElementById("a1").value);
-    const b = parseFloat(document.getElementById("b1").value);
+function giaiBac1() {
+    if (typeof PTSolver !== "undefined") {
+        var a = parseFloat(document.getElementById("a1").value);
+        var b = parseFloat(document.getElementById("b1").value);
 
-    if (a === 0) {
-        alert("Hệ số a phải khác 0!");
-        return;
+        // Gọi phương thức từ Java để giải phương trình bậc 1
+        var result = PTSolver.bac1(a, b);
+
+        document.getElementById("result1").innerHTML = "Nghiệm: " + result;
+    } else {
+        console.log("PTSolver is not defined.");
     }
-
-    // Gọi hàm solveBac1 từ Java
-    const result = PTSolver.solveBac1(a, b);
-    document.getElementById("result1").innerText = `Nghiệm: x = ${result}`;
 }
 
-function solveBac2() {
-    const a = parseFloat(document.getElementById("a2").value);
-    const b = parseFloat(document.getElementById("b2").value);
-    const c = parseFloat(document.getElementById("c2").value);
+function giaiBac2() {
+    if (typeof PTSolver !== "undefined") {
+        var a = parseFloat(document.getElementById("a2").value);
+        var b = parseFloat(document.getElementById("b2").value);
+        var c = parseFloat(document.getElementById("c").value);
 
-    if (a === 0) {
-        alert("Hệ số a phải khác 0!");
-        return;
-    }
+        // Gọi phương thức từ Java để giải phương trình bậc 2
+        var result = PTSolver.bac2(a, b, c);
 
-    // Gọi hàm solveBac2 từ Java
-    const result = PTSolver.solveBac2(a, b, c);
-
-    const delta = result[0];
-    const x1 = result[1];
-    const x2 = result[2];
-    let resultText;
-
-    if (delta > 0) {
-        resultText = `Phương trình có hai nghiệm phân biệt: x1 = ${x1}, x2 = ${x2}`;
-    } else if (delta === 0) {
-        resultText = `Phương trình có nghiệm kép: x1 = x2 = ${x1}`;
+        if (result[0] >= 0) {
+            document.getElementById("result2").innerHTML = "Delta: " + result[0] + "<br/>Nghiệm x1: " + result[1] + "<br/>Nghiệm x2: " + result[2];
+        } else {
+            document.getElementById("result2").innerHTML = "Phương trình vô nghiệm!";
+        }
     } else {
-        resultText = "Phương trình vô nghiệm.";
+        console.log("PTSolver is not defined.");
     }
-
-    document.getElementById("result2").innerText = resultText;
 }
 
 function return_index(){
-    location.href = 'index.html';
+    window.location.href = 'index.html';
 }
