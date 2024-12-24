@@ -8,17 +8,18 @@
     <script src="script.js"></script>
 </head>
 <body>
-
-<h2>Giải Phương Trình Bậc 2: ax² + bx + c = 0</h2>
-<label for="a2">Hệ số a: </label>
-<input type="number" id="a2" required>
-<label for="b2">Hệ số b: </label>
-<input type="number" id="b2" required>
-<label for="c2">Hệ số c: </label>
-<input type="number" id="c2" required>
-<button onclick="giaiBac2()">Giải</button>
-<p id="result2"></p>
-
-<button class='back_button' onclick="return_index()"></button>
+<h1>Giải Phương Trình Bậc 2</h1>
+<label for="a2">Hệ số a:</label>
+<input type="number" id="a2" placeholder="Nhập a">
+<br>
+<label for="b2">Hệ số b:</label>
+<input type="number" id="b2" placeholder="Nhập b">
+<br>
+<label for="c2">Hệ số c:</label>
+<input type="number" id="c2" placeholder="Nhập c">
+<br>
+<button onclick="giaiBac2(a2, b2, c2)">Giải</button>
+<p id="resultBac2"></p>
+<button class="back_button" onclick="return_index()"></button>
 </body>
 </html>

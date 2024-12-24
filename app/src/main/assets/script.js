@@ -1,33 +1,30 @@
-function giaiBac1() {
-    if (typeof PTSolver !== "undefined") {
-        var a = parseFloat(document.getElementById("a1").value);
-        var b = parseFloat(document.getElementById("b1").value);
-
-        // Gọi phương thức từ Java để giải phương trình bậc 1
-        var result = PTSolver.bac1(a, b);
-
-        document.getElementById("result1").innerHTML = "Nghiệm: " + result;
-    } else {
-        console.log("PTSolver is not defined.");
+// Hàm gọi giải phương trình bậc 1 từ Java
+function giaiBac1(a, b) {
+    try {
+        var resultBac1 = giaiPT.PTInterface.bac1(a, b);
+        alert("Nghiệm phương trình bậc 1: " + result);
+    } catch (e) {
+        alert("Lỗi: " + e.message);
     }
 }
 
-function giaiBac2() {
-    if (typeof PTSolver !== "undefined") {
-        var a = parseFloat(document.getElementById("a2").value);
-        var b = parseFloat(document.getElementById("b2").value);
-        var c = parseFloat(document.getElementById("c").value);
+function giaiBac2(a, b, c) {
+    try {
+        var resultBac2 = giaiPT.PTInterface.bac2(a, b, c);
+        var delta = result[0];
+        var x1 = result[1];
+        var x2 = result[2];
 
-        // Gọi phương thức từ Java để giải phương trình bậc 2
-        var result = PTSolver.bac2(a, b, c);
-
-        if (result[0] >= 0) {
-            document.getElementById("result2").innerHTML = "Delta: " + result[0] + "<br/>Nghiệm x1: " + result[1] + "<br/>Nghiệm x2: " + result[2];
+        // Kiểm tra delta và hiển thị kết quả
+        if (delta > 0) {
+            alert("Phương trình bậc 2 có 2 nghiệm phân biệt: x1 = " + x1 + ", x2 = " + x2);
+        } else if (delta == 0) {
+            alert("Phương trình bậc 2 có nghiệm kép: x1 = x2 = " + x1);
         } else {
-            document.getElementById("result2").innerHTML = "Phương trình vô nghiệm!";
+            alert("Phương trình bậc 2 vô nghiệm thực");
         }
-    } else {
-        console.log("PTSolver is not defined.");
+    } catch (e) {
+        alert("Lỗi: " + e.message);
     }
 }
 

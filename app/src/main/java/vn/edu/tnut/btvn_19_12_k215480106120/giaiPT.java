@@ -1,6 +1,7 @@
 package vn.edu.tnut.btvn_19_12_k215480106120;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -14,7 +15,17 @@ public class giaiPT extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.webview);
 
+
         WebView webView = findViewById(R.id.mainView);
+        // Thêm WebViewClient để kiểm tra lỗi trong WebView
+        webView.setWebViewClient(new WebViewClient() {
+            @Override
+            public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
+                super.onReceivedError(view, errorCode, description, failingUrl);
+                Log.e("WebView", "Lỗi khi tải trang: " + description);
+            }
+        });
+
         WebSettings webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true);
 
@@ -23,6 +34,7 @@ public class giaiPT extends AppCompatActivity {
 
         // Tải trang HTML từ assets
         webView.loadUrl("file:///android_asset/index.html");
+
     }
 
     // Lớp PTInterface để gọi phương thức Java từ JavaScript
