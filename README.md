@@ -1,4 +1,5 @@
 # BTVN 20/12
+Hiện tại vẫn chưa gọi được hàm Java sang JS
 
 Họ và tên: La Đức Thắng
 MSSV: K214580106120
