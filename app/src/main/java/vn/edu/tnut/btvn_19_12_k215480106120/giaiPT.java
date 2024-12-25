@@ -41,7 +41,7 @@ public class giaiPT extends AppCompatActivity {
     public static class PTInterface {
 
         // Phương thức giải phương trình bậc 1
-        @JavascriptInterface
+        @android.webkit.JavascriptInterface
         public double bac1(double a, double b) {
             if (a == 0) {
                 throw new IllegalArgumentException("a không thể bằng 0");
@@ -49,7 +49,7 @@ public class giaiPT extends AppCompatActivity {
             return -b / a;
         }
         // Phương thức giải phương trình bậc 2
-        @JavascriptInterface
+        @android.webkit.JavascriptInterface
         public double[] bac2(double a, double b, double c) {
             double delta = Math.pow(b, 2) - 4 * a * c;
             double x1, x2;
