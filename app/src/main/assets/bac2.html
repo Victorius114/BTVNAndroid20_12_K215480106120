@@ -4,22 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Giải Phương Trình</title>
-    <link rel='stylesheet' href="style.css">
-    <script src="script.js"></script>
+    <script>
+        function giaiBac2() {
+            var a = parseFloat(document.getElementById("a2").value);
+            var b = parseFloat(document.getElementById("b2").value);
+            var c = parseFloat(document.getElementById("c2").value);
+
+            if (isNaN(a) || isNaN(b) || isNaN(c)) {
+                document.getElementById("resultBac2").innerText = "Vui lòng nhập đầy đủ hệ số";
+                return;
+            }
+
+            // Gọi phương thức Java từ WebView
+            var result = AndroidFunction.solve(a, b, c);
+            document.getElementById("resultBac2").innerText = result;
+        }
+    </script>
 </head>
 <body>
 <h1>Giải Phương Trình Bậc 2</h1>
 <label for="a2">Hệ số a:</label>
-<input type="number" id="a2" placeholder="Nhập a">
-<br>
+<input type="number" id="a2" placeholder="Nhập a"><br>
+
 <label for="b2">Hệ số b:</label>
-<input type="number" id="b2" placeholder="Nhập b">
-<br>
+<input type="number" id="b2" placeholder="Nhập b"><br>
+
 <label for="c2">Hệ số c:</label>
-<input type="number" id="c2" placeholder="Nhập c">
-<br>
-<button onclick="giaiBac2(a2, b2, c2)">Giải</button>
+<input type="number" id="c2" placeholder="Nhập c"><br>
+
+<button onclick="giaiBac2()">Giải</button>
 <p id="resultBac2"></p>
-<button class="back_button" onclick="return_index()"></button>
 </body>
 </html>

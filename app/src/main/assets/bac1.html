@@ -3,20 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Giải Phương Trình</title>
-    <link rel='stylesheet' href="style.css">
-    <script src="script.js"></script>
+    <title>Giải phương trình</title>
+    <script>
+        function giaiBac1() {
+            let a = parseFloat(document.getElementById("a1").value);
+            let b = parseFloat(document.getElementById("b1").value);
+            let result = PTInterface.bac1(a, b);
+            alert(result);
+        }
+
+        function giaiBac2() {
+            let a = parseFloat(document.getElementById("a2").value);
+            let b = parseFloat(document.getElementById("b2").value);
+            let c = parseFloat(document.getElementById("c2").value);
+            let result = PTInterface.bac2(a, b, c);
+            alert(result);
+        }
+    </script>
 </head>
 <body>
-<h1>Giải Phương Trình Bậc 1</h1>
-<label for="a1">Nhập a:</label>
-<input type="number" id="a1" placeholder="Nhập a" required>
-<br>
-<label for="b1">Nhập b:</label>
-<input type="number" id="b1" placeholder="Nhập b" required>
-<br>
-<button id="giaiBac1(a1, b1)">Giải</button>
-<div id="resultBac1"></div>
-<button class="back_button" onclick="return_index()"></button>
+<h2>Giải phương trình bậc 1</h2>
+<input type="number" id="a1" placeholder="Nhập a"> x +
+<input type="number" id="b1" placeholder="Nhập b"> = 0
+<button onclick="giaiBac1()">Giải</button>
+
+<h2>Giải phương trình bậc 2</h2>
+<input type="number" id="a2" placeholder="Nhập a"> x² +
+<input type="number" id="b2" placeholder="Nhập b"> x +
+<input type="number" id="c2" placeholder="Nhập c"> = 0
+<button onclick="giaiBac2()">Giải</button>
 </body>
 </html>

@@ -3,25 +3,24 @@ package vn.edu.tnut.btvn_19_12_k215480106120;
 import android.os.Bundle;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
+    private WebView webView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.webview);  // Thay R.layout.activity_giai_pt bằng layout của bạn
+        setContentView(R.layout.webview);
 
-        // Khởi tạo WebView
-        WebView webView = findViewById(R.id.mainView);  // ID của WebView trong layout XML của bạn
+        webView = findViewById(R.id.web_scr);
         WebSettings webSettings = webView.getSettings();
-        webSettings.setJavaScriptEnabled(true);  // Bật JavaScript trong WebView
+        webSettings.setJavaScriptEnabled(true);
 
-        // Expose PTInterface cho JavaScript
-        webView.addJavascriptInterface(new giaiPT.PTInterface(), "PTInterface");
+        // Thêm đối tượng Java vào WebView
+        webView.addJavascriptInterface(new giaiPT(), "AndroidFunction");
 
-        // Tải trang HTML (nằm trong thư mục assets)
-        webView.loadUrl("file:///android_asset/index.html");  // Đảm bảo file giaipt.html có trong thư mục assets
+        // Load trang HTML từ assets
+        webView.loadUrl("file:///android_asset/index.html");
     }
 }

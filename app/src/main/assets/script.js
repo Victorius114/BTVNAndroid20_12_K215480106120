@@ -1,33 +1,29 @@
-// Hàm gọi giải phương trình bậc 1 từ Java
-function giaiBac1(a, b) {
+async function giaiBac2(aElement, bElement, cElement) {
+    const a = parseFloat(aElement.value);
+    const b = parseFloat(bElement.value);
+    const c = parseFloat(cElement.value);
+
+    if (isNaN(a) || isNaN(b) || isNaN(c)) {
+        document.getElementById("resultBac2").innerText = "Vui lòng nhập đầy đủ hệ số";
+        return;
+    }
+
     try {
-        var resultBac1 = giaiPT.PTInterface.bac1(a, b);
-        alert("Nghiệm phương trình bậc 1: " + result);
-    } catch (e) {
-        alert("Lỗi: " + e.message);
+        const response = await fetch("http://localhost:8080/solve", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ a, b, c })
+        });
+
+        const result = await response.json();
+        document.getElementById("resultBac2").innerText = result.message;
+    } catch (error) {
+        document.getElementById("resultBac2").innerText = "Lỗi kết nối đến server";
     }
 }
 
-function giaiBac2(a, b, c) {
-    try {
-        var resultBac2 = giaiPT.PTInterface.bac2(a, b, c);
-        var delta = result[0];
-        var x1 = result[1];
-        var x2 = result[2];
-
-        // Kiểm tra delta và hiển thị kết quả
-        if (delta > 0) {
-            alert("Phương trình bậc 2 có 2 nghiệm phân biệt: x1 = " + x1 + ", x2 = " + x2);
-        } else if (delta == 0) {
-            alert("Phương trình bậc 2 có nghiệm kép: x1 = x2 = " + x1);
-        } else {
-            alert("Phương trình bậc 2 vô nghiệm thực");
-        }
-    } catch (e) {
-        alert("Lỗi: " + e.message);
-    }
-}
-
-function return_index(){
-    window.location.href = 'index.html';
+function return_index() {
+    window.location.href = "index.html";
 }
