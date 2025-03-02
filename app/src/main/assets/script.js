@@ -1,7 +1,7 @@
-async function giaiBac2(aElement, bElement, cElement) {
-    const a = parseFloat(aElement.value);
-    const b = parseFloat(bElement.value);
-    const c = parseFloat(cElement.value);
+function giaiBac2() {
+    var a = parseFloat(document.getElementById("a2").value);
+    var b = parseFloat(document.getElementById("b2").value);
+    var c = parseFloat(document.getElementById("c2").value);
 
     if (isNaN(a) || isNaN(b) || isNaN(c)) {
         document.getElementById("resultBac2").innerText = "Vui lòng nhập đầy đủ hệ số";
@@ -9,18 +9,15 @@ async function giaiBac2(aElement, bElement, cElement) {
     }
 
     try {
-        const response = await fetch("http://localhost:8080/solve", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ a, b, c })
-        });
-
-        const result = await response.json();
-        document.getElementById("resultBac2").innerText = result.message;
+        // Kiểm tra xem AndroidFunction có tồn tại không
+        if (typeof AndroidFunction !== "undefined" && AndroidFunction.solve) {
+            var result = AndroidFunction.solve(a, b, c);
+            document.getElementById("resultBac2").innerText = result;
+        } else {
+            document.getElementById("resultBac2").innerText = "Lỗi: WebView chưa được kết nối!";
+        }
     } catch (error) {
-        document.getElementById("resultBac2").innerText = "Lỗi kết nối đến server";
+        document.getElementById("resultBac2").innerText = "Lỗi khi gọi phương thức Java!";
     }
 }
 
